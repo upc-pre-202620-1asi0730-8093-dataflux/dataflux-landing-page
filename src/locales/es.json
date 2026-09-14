@@ -1,0 +1,246 @@
+{
+  "nav": {
+    "skip": "Ir al contenido",
+    "label": "Navegación principal",
+    "menu": "Abrir o cerrar navegación",
+    "how": "Cómo funciona",
+    "teams": "Equipos",
+    "plans": "Planes",
+    "team": "Nosotros",
+    "login": "Ingresar",
+    "signup": "Registrarse",
+    "language": "Cambiar idioma a inglés"
+  },
+  "hero": {
+    "title": "Gestiona tu maquinaria con control total.",
+    "body": "Gestiona equipos, reservas, alquileres, entregas, devoluciones y mantenimiento desde una sola plataforma.",
+    "art": "Panel de disponibilidad de equipos de RentBuild junto a un integrante del equipo.",
+    "cycleTitle": "Todo el ciclo de alquiler, conectado",
+    "cycle": [
+      "Equipos",
+      "Reservas",
+      "Alquileres",
+      "Mantenimiento",
+      "Reportes"
+    ]
+  },
+  "operation": {
+    "title": "Controla cada etapa de tu operación.",
+    "body": "RentBuild centraliza la información de tus equipos para que puedas consultar su estado, disponibilidad y actividad desde un solo lugar.",
+    "ratings": [
+      {
+        "title": "Control total",
+        "label": "Inventario"
+      },
+      {
+        "title": "Menos errores",
+        "label": "Operación"
+      }
+    ],
+    "items": [
+      {
+        "title": "Disponibilidad",
+        "body": "Consulta qué equipos están disponibles, reservados, alquilados o en mantenimiento."
+      },
+      {
+        "title": "Reservas",
+        "body": "Organiza los períodos y evita conflictos de disponibilidad entre alquileres."
+      },
+      {
+        "title": "Mantenimiento",
+        "body": "Registra inspecciones, incidentes, reparaciones y mantenimiento."
+      }
+    ]
+  },
+  "features": {
+    "title": "Funciones para gestionar mejor tus equipos",
+    "body": "Las herramientas esenciales para controlar el ciclo de alquiler y operación de cada máquina.",
+    "items": [
+      {
+        "title": "Gestión de equipos",
+        "body": "Registra, consulta y monitorea el estado y la disponibilidad de tu maquinaria."
+      },
+      {
+        "title": "Reservas y alquileres",
+        "body": "Gestiona reservas, contratos, entregas y devoluciones en un solo flujo de trabajo."
+      },
+      {
+        "title": "Reportes operativos",
+        "body": "Consulta información sobre alquileres, uso, ingresos y mantenimiento."
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Mayor control sobre cada alquiler",
+    "items": [
+      "Disponibilidad actualizada de cada equipo",
+      "Reservas sin conflictos de fechas",
+      "Seguimiento de entregas y devoluciones",
+      "Gestión de incidentes y mantenimiento",
+      "Historial completo de cada máquina"
+    ],
+    "art": "Estación de trabajo con tarjetas de servicio, alquiler y devolución de equipos."
+  },
+  "showcase": {
+    "title": "Funciones RentBuild.\nControl real, todos los días.",
+    "video": "Mira RentBuild en acción",
+    "items": [
+      {
+        "title": "Gestión de equipos",
+        "body": "Registra tu maquinaria y organiza su ubicación, disponibilidad y condición en un solo lugar."
+      },
+      {
+        "title": "Reservas y alquileres",
+        "body": "Conecta reservas, contratos, entregas y devoluciones durante todo el ciclo de alquiler."
+      },
+      {
+        "title": "Mantenimiento e incidentes",
+        "body": "Registra inspecciones, reparaciones e incidentes para preparar los equipos para su próximo alquiler."
+      },
+      {
+        "title": "Reportes operativos",
+        "body": "Consulta el uso de equipos, la actividad de alquiler, los ingresos y el historial de mantenimiento para apoyar tus decisiones."
+      }
+    ]
+  },
+  "video": {
+    "soon": "Video próximamente"
+  },
+  "pricing": {
+    "title": "Planes que crecen\ncon tu negocio",
+    "body": "Elige las funciones que necesitas para gestionar tus equipos con RentBuild.",
+    "billing": "Período de facturación",
+    "monthly": "Mensual",
+    "annual": "Anual",
+    "popular": "Más popular",
+    "monthlyNote": "Facturación mensual seleccionada. Consulta los precios con nosotros.",
+    "annualNote": "Facturación anual seleccionada. Consulta los precios con nosotros.",
+    "basic": {
+      "name": "Básico",
+      "body": "Funciones esenciales\npara empezar",
+      "features": [
+        "Gestión de equipos",
+        "Reservas",
+        "Alquileres y devoluciones",
+        "Clientes",
+        "Soporte estándar"
+      ],
+      "cta": "Elegir Básico"
+    },
+    "pro": {
+      "name": "Pro",
+      "body": "Control completo\nde la operación",
+      "features": [
+        "Todo lo incluido en el plan Básico",
+        "Mantenimiento",
+        "Reportes operativos",
+        "Alertas y monitoreo",
+        "Más usuarios"
+      ],
+      "cta": "Elegir Pro"
+    },
+    "premium": {
+      "name": "Premium",
+      "body": "La visión más completa de tus equipos, alquileres y mantenimiento.",
+      "features": [
+        "Todo lo incluido en Pro",
+        "Historial ampliado de equipos",
+        "Comparaciones de uso semanales y mensuales",
+        "Planificación de mantenimiento preventivo",
+        "Reportes detallados con exportación a PDF"
+      ],
+      "cta": "Elegir Premium"
+    }
+  },
+  "team": {
+    "title": "Nuestro equipo",
+    "role": "Estudiante de Ingeniería de Software",
+    "photoPending": "Fotografía del integrante pendiente",
+    "bios": [
+      "Estudiante de Ingeniería de Software en la UPC. Desarrollador Full Stack con experiencia en Spring Boot, Angular, Vue.js y Python, además de conocimientos en QA Automation.",
+      "Tengo conocimientos en el área de programación y experiencia haciendo interfaces de usuario. Me considero una persona responsable y persistente.",
+      "22 años. Una persona tranquila, colaborativa y adaptable que disfruta trabajar en equipo. Tengo conocimientos en C++ y Python y siempre busco formas de hacer las cosas de manera eficiente.",
+      "Estudiante de Ingeniería de Software apasionado por crear soluciones tecnológicas. Mi enfoque va más allá de la programación: me interesa desarrollar experiencias digitales funcionales y agradables. Tengo conocimientos en C++, HTML y CSS.",
+      "20 años. Estudiante responsable y proactivo con una sólida base técnica en C++. Destaco por mi capacidad para aportar soluciones creativas y mi compromiso con el aprendizaje constante en entornos profesionales."
+    ]
+  },
+  "about": {
+    "title": "Simplificando el alquiler\ny la gestión de equipos",
+    "body": "RentBuild nació para simplificar y centralizar las operaciones de alquiler de equipos. La plataforma ayuda a las empresas a gestionar disponibilidad, reservas, alquileres, entregas, devoluciones, incidentes y mantenimiento desde un solo lugar. Al conectar cada etapa del proceso de alquiler, RentBuild ofrece mayor control, visibilidad y organización durante todo el ciclo de vida del equipo.",
+    "video": "Conoce RentBuild",
+    "items": [
+      {
+        "title": "Gestión de equipos:",
+        "body": "Registra, organiza y monitorea el estado, la ubicación y la disponibilidad de cada equipo."
+      },
+      {
+        "title": "Seguimiento del ciclo de alquiler:",
+        "body": "Gestiona reservas, alquileres, entregas, devoluciones, inspecciones y mantenimiento en un flujo conectado."
+      },
+      {
+        "title": "Control de mantenimiento:",
+        "body": "Registra incidentes, inspecciones, reparaciones y actividades de mantenimiento para preparar los equipos para futuros alquileres."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Empieza a tomar el control de tus equipos.",
+    "email": "Ingresa tu correo aquí",
+    "subscribe": "Suscribirse a novedades de RentBuild",
+    "success": "Te has suscrito. ¡Gracias por tu interés en RentBuild!",
+    "error": "No pudimos enviar tu solicitud. Vuelve a intentarlo más tarde.",
+    "unavailable": "Las suscripciones estarán disponibles pronto. Tu correo no se ha enviado ni guardado.",
+    "terms": "Términos y condiciones",
+    "privacy": "Política de privacidad",
+    "columns": [
+      {
+        "title": "Soporte",
+        "links": [
+          "Centro de ayuda",
+          "Planes y acceso",
+          "Acerca de",
+          "Contáctanos"
+        ]
+      },
+      {
+        "title": "Ayuda y soluciones",
+        "links": [
+          "Hablar con soporte",
+          "Demostración",
+          "Control de alquileres",
+          "Gestión de equipos"
+        ]
+      },
+      {
+        "title": "Producto",
+        "links": [
+          "Funciones",
+          "Beneficios",
+          "Cómo funciona",
+          "Planes del producto"
+        ]
+      }
+    ]
+  },
+  "access": {
+    "title": "RentBuild llega pronto",
+    "body": "El acceso a cuentas todavía no está disponible. Explora la plataforma y los planes mientras preparamos el lanzamiento.",
+    "selected": "Plan seleccionado",
+    "contact": "Contactar al equipo",
+    "understood": "Seguir explorando",
+    "close": "Cerrar diálogo",
+    "legalTitle": "Información próximamente",
+    "legalBody": "Este documento aún no se ha publicado. Estará disponible antes de que se habilite el registro de cuentas en RentBuild."
+  },
+  "art": {
+    "equipment": "Equipo",
+    "excavator": "Excavadora 01",
+    "reserve": "Reservar",
+    "available": "Disponibles",
+    "equipmentCount": "24 equipos",
+    "status": "Estado",
+    "active": "Activo",
+    "today": "Hoy",
+    "returnRecorded": "Devolución registrada"
+  }
+}
