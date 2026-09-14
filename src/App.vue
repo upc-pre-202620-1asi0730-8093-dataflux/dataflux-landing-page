@@ -1,0 +1,37 @@
+<script setup>
+import { ref } from 'vue'
+import TheHeader from './shared/presentation/components/TheHeader.vue'
+import SiteFooter from './shared/presentation/components/SiteFooter.vue'
+import AccessDialog from './shared/presentation/components/AccessDialog.vue'
+import TheHero from './value-proposition/presentation/components/TheHero.vue'
+import OperationOverview from './value-proposition/presentation/components/OperationOverview.vue'
+import AppFeatures from './value-proposition/presentation/components/AppFeatures.vue'
+import RentalBenefits from './value-proposition/presentation/components/RentalBenefits.vue'
+import ProductShowcase from './value-proposition/presentation/components/ProductShowcase.vue'
+import PricingPlans from './value-proposition/presentation/components/PricingPlans.vue'
+import OurTeam from './value-proposition/presentation/components/OurTeam.vue'
+import AboutRentBuild from './value-proposition/presentation/components/AboutRentBuild.vue'
+
+const accessDialog = ref(null)
+function openAccess(detail = {}) {
+  accessDialog.value.open(detail)
+}
+</script>
+
+<template>
+  <div class="landing-page">
+    <TheHeader @access="openAccess" />
+    <main id="main-content">
+      <TheHero @access="openAccess" />
+      <OperationOverview />
+      <AppFeatures />
+      <RentalBenefits />
+      <ProductShowcase />
+      <OurTeam />
+      <AboutRentBuild />
+      <PricingPlans @access="openAccess" />
+    </main>
+    <SiteFooter @access="openAccess" />
+    <AccessDialog ref="accessDialog" />
+  </div>
+</template>
