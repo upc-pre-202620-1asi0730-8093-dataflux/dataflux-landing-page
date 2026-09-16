@@ -104,7 +104,7 @@ El resultado se genera en `dist/`.
 - Newsletter con validación de email, manejo de errores y tiempo de espera configurable.
 - Sección "Contáctanos" con formulario (nombre, correo y mensaje), correo directo y enlaces a redes sociales.
 - Inicio de sesión y registro con formularios propios (correo/contraseña y nombre/correo/contraseña), enlazados entre sí y con el plan seleccionado cuando corresponde.
-- Dashboard de bienvenida tras iniciar sesión o registrarse (modo demo mientras no hay backend), con tarjeta de perfil de solo lectura (nombre, correo, empresa/obra y teléfono), cierre de sesión y persistencia durante la pestaña activa.
+- Dashboard de bienvenida tras iniciar sesión o registrarse (modo demo mientras no hay backend), con pestañas de Perfil (solo lectura) e Inventario de maquinaria (equipo, categoría, estado y unidades con datos de ejemplo), cierre de sesión y persistencia durante la pestaña activa.
 - Soporte para movimiento reducido y navegación por teclado.
 
 ## Conectar servicios reales

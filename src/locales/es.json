@@ -265,6 +265,11 @@
     "welcome": "¡Bienvenido, {name}!",
     "body": "Tu cuenta se activará pronto. Te contactaremos para darte acceso completo a RentBuild.",
     "logout": "Cerrar sesión",
+    "tabsLabel": "Secciones del panel",
+    "tabs": {
+      "profile": "Perfil",
+      "inventory": "Inventario"
+    },
     "profileTitle": "Tu perfil",
     "profile": {
       "name": "Nombre completo",
@@ -272,6 +277,27 @@
       "company": "Empresa / Obra",
       "phone": "Teléfono",
       "empty": "No proporcionado"
+    },
+    "inventory": {
+      "title": "Inventario de maquinaria",
+      "equipment": "Equipo",
+      "category": "Categoría",
+      "status": "Estado",
+      "units": "Unidades",
+      "statuses": {
+        "available": "Disponible",
+        "rented": "Alquilado",
+        "maintenance": "Mantenimiento",
+        "reserved": "Reservado"
+      },
+      "items": {
+        "excavator": { "name": "Excavadora 01", "category": "Excavadoras" },
+        "crane": { "name": "Grúa Torre 02", "category": "Grúas" },
+        "compactor": { "name": "Compactadora 03", "category": "Compactación" },
+        "generator": { "name": "Generador 04", "category": "Generadores" },
+        "loader": { "name": "Cargador Frontal 05", "category": "Cargadores" },
+        "mixer": { "name": "Mezcladora de Concreto 06", "category": "Concreto" }
+      }
     }
   },
   "access": {
