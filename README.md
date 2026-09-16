@@ -58,6 +58,7 @@ src/
     ReferenceArtwork.vue
     SiteFooter.vue
     TheHeader.vue
+    UserDashboard.vue
     VideoPlaceholder.vue
   value-proposition/presentation/components/
     AboutRentBuild.vue
@@ -103,6 +104,7 @@ El resultado se genera en `dist/`.
 - Newsletter con validación de email, manejo de errores y tiempo de espera configurable.
 - Sección "Contáctanos" con formulario (nombre, correo y mensaje), correo directo y enlaces a redes sociales.
 - Inicio de sesión y registro con formularios propios (correo/contraseña y nombre/correo/contraseña), enlazados entre sí y con el plan seleccionado cuando corresponde.
+- Dashboard de bienvenida tras iniciar sesión o registrarse (modo demo mientras no hay backend), con cierre de sesión y persistencia durante la pestaña activa.
 - Soporte para movimiento reducido y navegación por teclado.
 
 ## Conectar servicios reales
@@ -129,13 +131,15 @@ VITE_SOCIAL_BLUESKY=https://bsky.app/profile/tu-cuenta
 
 Estas URLs son ejemplos y no apuntan a servicios reales de RentBuild. Las variables `VITE_` son públicas en el navegador, así que no se deben incluir claves privadas o tokens sensibles.
 
-`VITE_LOGIN_URL` redirige de inmediato a una página de login externa al pulsar "Ingresar" en el navbar. Si no está configurada, se abre el diálogo con un formulario de inicio de sesión (correo y contraseña); ese formulario envía los datos a `VITE_LOGIN_ENDPOINT` si está definido, o muestra un mensaje de "disponible pronto" en caso contrario.
+`VITE_LOGIN_URL` redirige de inmediato a una página de login externa al pulsar "Ingresar" en el navbar. Si no está configurada, se abre el diálogo con un formulario de inicio de sesión (correo y contraseña).
 
-`VITE_SIGNUP_URL` funciona igual para el botón "Registrarse" y para elegir un plan: redirige a una página de registro externa. Sin esa variable, se abre el diálogo con un formulario de registro (nombre, correo y contraseña, con el plan seleccionado si aplica) que envía los datos a `VITE_SIGNUP_ENDPOINT` si está definido, o muestra el mismo aviso de "disponible pronto".
+`VITE_SIGNUP_URL` funciona igual para el botón "Registrarse" y para elegir un plan: redirige a una página de registro externa. Sin esa variable, se abre el diálogo con un formulario de registro (nombre, correo y contraseña, con el plan seleccionado si aplica).
+
+Al enviar cualquiera de los dos formularios: si `VITE_LOGIN_ENDPOINT`/`VITE_SIGNUP_ENDPOINT` está definido, los datos se envían por `POST` a ese endpoint; si falla, se muestra un mensaje de error. En ambos casos (endpoint configurado con éxito, o sin endpoint configurado — modo demo), el usuario pasa directo al dashboard de bienvenida (`UserDashboard.vue`) con datos ficticios, ya que todavía no existe backend real de autenticación. La sesión demo se guarda en `sessionStorage` y se cierra con el botón "Cerrar sesión" o al cerrar la pestaña.
 
 ## Estado actual
 
-La landing page ya incluye la estructura visual, textos, traducciones y comportamiento base de la experiencia. Los servicios reales para registro, acceso y suscripción no están conectados todavía, por lo que los formularios muestran mensajes informativos cuando no existe un endpoint o URL valida.
+La landing page ya incluye la estructura visual, textos, traducciones y comportamiento base de la experiencia. Los servicios reales para registro, acceso y suscripción no están conectados todavía. El newsletter y el formulario de contacto muestran mensajes informativos cuando no existe un endpoint válido; el login y el registro, al no depender de una cuenta real, avanzan directo a un dashboard de bienvenida en modo demo.
 
 ## Diseño y contenido
 

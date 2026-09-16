@@ -243,9 +243,7 @@
     "password": "Password",
     "submit": "Log in",
     "submitting": "Logging in…",
-    "success": "Login request sent. We'll reach out to confirm your access.",
     "error": "We couldn't log you in. Please try again later.",
-    "unavailable": "Login will be available soon. Your details have not been sent or saved.",
     "noAccount": "Don't have an account?",
     "signup": "Sign up"
   },
@@ -257,11 +255,14 @@
     "password": "Password",
     "submit": "Create account",
     "submitting": "Creating account…",
-    "success": "You're set! We received your request and will reach out soon to activate your account.",
     "error": "We couldn't create your account. Please try again later.",
-    "unavailable": "Sign up will be available soon. Your details have not been sent or saved.",
     "hasAccount": "Already have an account?",
     "login": "Log in"
+  },
+  "dashboard": {
+    "welcome": "Welcome, {name}!",
+    "body": "Your account will be activated soon. We'll reach out to give you full access to RentBuild.",
+    "logout": "Log out"
   },
   "access": {
     "selected": "Selected plan",

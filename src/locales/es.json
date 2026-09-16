@@ -243,9 +243,7 @@
     "password": "Contraseña",
     "submit": "Ingresar",
     "submitting": "Ingresando…",
-    "success": "Inicio de sesión enviado. Te contactaremos para confirmar el acceso.",
     "error": "No pudimos iniciar sesión. Vuelve a intentarlo más tarde.",
-    "unavailable": "El inicio de sesión estará disponible pronto. Tus datos no se han enviado ni guardado.",
     "noAccount": "¿No tienes una cuenta?",
     "signup": "Regístrate"
   },
@@ -257,11 +255,14 @@
     "password": "Contraseña",
     "submit": "Crear cuenta",
     "submitting": "Creando cuenta…",
-    "success": "¡Listo! Recibimos tu solicitud y te contactaremos pronto para activar tu cuenta.",
     "error": "No pudimos crear tu cuenta. Vuelve a intentarlo más tarde.",
-    "unavailable": "El registro estará disponible pronto. Tus datos no se han enviado ni guardado.",
     "hasAccount": "¿Ya tienes una cuenta?",
     "login": "Inicia sesión"
+  },
+  "dashboard": {
+    "welcome": "¡Bienvenido, {name}!",
+    "body": "Tu cuenta se activará pronto. Te contactaremos para darte acceso completo a RentBuild.",
+    "logout": "Cerrar sesión"
   },
   "access": {
     "selected": "Plan seleccionado",

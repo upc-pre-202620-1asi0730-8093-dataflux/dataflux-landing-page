@@ -12,6 +12,7 @@ import './assets/styles/components/showcase.css'
 import './assets/styles/components/pricing.css'
 import './assets/styles/components/team.css'
 import './assets/styles/components/contact.css'
+import './assets/styles/components/dashboard.css'
 import './assets/styles/components/footer.css'
 import './assets/styles/responsive.css'
 

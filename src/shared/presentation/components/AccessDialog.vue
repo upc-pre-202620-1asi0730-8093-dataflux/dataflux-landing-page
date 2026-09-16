@@ -2,6 +2,7 @@
 import { ref, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+const emit = defineEmits(['authenticated'])
 const { t } = useI18n()
 const dialog = ref(null)
 const detail = ref({})
@@ -51,39 +52,40 @@ function switchToLogin() {
   close()
   open({ mode: 'login' })
 }
-async function submitLogin() {
-  if (loginSubmitting.value) return
-  loginStatus.value = ''
-  if (!loginEndpoint) { loginStatus.value = 'unavailable'; return }
-  loginSubmitting.value = true
+async function postJson(endpoint, payload) {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 10000)
   try {
-    const response = await fetch(loginEndpoint, {
+    const response = await fetch(endpoint, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...loginForm }), signal: controller.signal,
+      body: JSON.stringify(payload), signal: controller.signal,
     })
-    if (!response.ok) throw new Error('Login was not accepted')
-    loginStatus.value = 'success'
-  } catch { loginStatus.value = 'error' }
-  finally { clearTimeout(timeout); loginSubmitting.value = false }
+    return response.ok
+  } catch { return false }
+  finally { clearTimeout(timeout) }
+}
+function enterDashboard(user) {
+  emit('authenticated', user)
+  close()
+}
+async function submitLogin() {
+  if (loginSubmitting.value) return
+  loginStatus.value = ''
+  loginSubmitting.value = true
+  const ok = loginEndpoint ? await postJson(loginEndpoint, { ...loginForm }) : true
+  loginSubmitting.value = false
+  if (!ok) { loginStatus.value = 'error'; return }
+  enterDashboard({ email: loginForm.email })
 }
 async function submitSignup() {
   if (signupSubmitting.value) return
   signupStatus.value = ''
-  if (!signupEndpoint) { signupStatus.value = 'unavailable'; return }
   signupSubmitting.value = true
-  const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), 10000)
-  try {
-    const response = await fetch(signupEndpoint, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...signupForm, plan: detail.value.plan, period: detail.value.period }), signal: controller.signal,
-    })
-    if (!response.ok) throw new Error('Signup was not accepted')
-    signupStatus.value = 'success'
-  } catch { signupStatus.value = 'error' }
-  finally { clearTimeout(timeout); signupSubmitting.value = false }
+  const payload = { ...signupForm, plan: detail.value.plan, period: detail.value.period }
+  const ok = signupEndpoint ? await postJson(signupEndpoint, payload) : true
+  signupSubmitting.value = false
+  if (!ok) { signupStatus.value = 'error'; return }
+  enterDashboard({ name: signupForm.name, email: signupForm.email })
 }
 defineExpose({ open })
 </script>
