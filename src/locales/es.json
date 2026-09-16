@@ -236,6 +236,19 @@
       }
     ]
   },
+  "login": {
+    "title": "Inicia sesión en RentBuild",
+    "body": "Ingresa con tu correo y contraseña para acceder a tu cuenta.",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Ingresar",
+    "submitting": "Ingresando…",
+    "success": "Inicio de sesión enviado. Te contactaremos para confirmar el acceso.",
+    "error": "No pudimos iniciar sesión. Vuelve a intentarlo más tarde.",
+    "unavailable": "El inicio de sesión estará disponible pronto. Tus datos no se han enviado ni guardado.",
+    "noAccount": "¿No tienes una cuenta?",
+    "signup": "Regístrate"
+  },
   "access": {
     "title": "RentBuild llega pronto",
     "body": "El acceso a cuentas todavía no está disponible. Explora la plataforma y los planes mientras preparamos el lanzamiento.",

@@ -113,6 +113,7 @@ Ejemplo:
 ```dotenv
 VITE_SIGNUP_URL=https://tu-aplicacion.example/registro
 VITE_LOGIN_URL=https://tu-aplicacion.example/login
+VITE_LOGIN_ENDPOINT=https://tu-api.example/login
 VITE_CONTACT_EMAIL=contacto@tu-dominio.example
 VITE_NEWSLETTER_ENDPOINT=https://tu-api.example/newsletter
 VITE_TERMS_URL=https://tu-dominio.example/terminos
@@ -125,6 +126,8 @@ VITE_SOCIAL_BLUESKY=https://bsky.app/profile/tu-cuenta
 ```
 
 Estas URLs son ejemplos y no apuntan a servicios reales de RentBuild. Las variables `VITE_` son públicas en el navegador, así que no se deben incluir claves privadas o tokens sensibles.
+
+`VITE_LOGIN_URL` redirige de inmediato a una página de login externa al pulsar "Ingresar" en el navbar. Si no está configurada, se abre el diálogo con un formulario de inicio de sesión (correo y contraseña); ese formulario envía los datos a `VITE_LOGIN_ENDPOINT` si está definido, o muestra un mensaje de "disponible pronto" en caso contrario.
 
 ## Estado actual
 

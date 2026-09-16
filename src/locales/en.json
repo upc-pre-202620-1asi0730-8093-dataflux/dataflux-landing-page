@@ -236,6 +236,19 @@
       }
     ]
   },
+  "login": {
+    "title": "Log in to RentBuild",
+    "body": "Enter your email and password to access your account.",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Log in",
+    "submitting": "Logging in…",
+    "success": "Login request sent. We'll reach out to confirm your access.",
+    "error": "We couldn't log you in. Please try again later.",
+    "unavailable": "Login will be available soon. Your details have not been sent or saved.",
+    "noAccount": "Don't have an account?",
+    "signup": "Sign up"
+  },
   "access": {
     "title": "RentBuild is coming soon",
     "body": "Account access is not available yet. Explore the platform and plans while we prepare the launch.",
