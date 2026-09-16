@@ -102,6 +102,7 @@ El resultado se genera en `dist/`.
 - Diálogo de acceso con bloqueo de scroll y restauración del foco.
 - Newsletter con validación de email, manejo de errores y tiempo de espera configurable.
 - Sección "Contáctanos" con formulario (nombre, correo y mensaje), correo directo y enlaces a redes sociales.
+- Inicio de sesión y registro con formularios propios (correo/contraseña y nombre/correo/contraseña), enlazados entre sí y con el plan seleccionado cuando corresponde.
 - Soporte para movimiento reducido y navegación por teclado.
 
 ## Conectar servicios reales
@@ -112,6 +113,7 @@ Ejemplo:
 
 ```dotenv
 VITE_SIGNUP_URL=https://tu-aplicacion.example/registro
+VITE_SIGNUP_ENDPOINT=https://tu-api.example/registro
 VITE_LOGIN_URL=https://tu-aplicacion.example/login
 VITE_LOGIN_ENDPOINT=https://tu-api.example/login
 VITE_CONTACT_EMAIL=contacto@tu-dominio.example
@@ -128,6 +130,8 @@ VITE_SOCIAL_BLUESKY=https://bsky.app/profile/tu-cuenta
 Estas URLs son ejemplos y no apuntan a servicios reales de RentBuild. Las variables `VITE_` son públicas en el navegador, así que no se deben incluir claves privadas o tokens sensibles.
 
 `VITE_LOGIN_URL` redirige de inmediato a una página de login externa al pulsar "Ingresar" en el navbar. Si no está configurada, se abre el diálogo con un formulario de inicio de sesión (correo y contraseña); ese formulario envía los datos a `VITE_LOGIN_ENDPOINT` si está definido, o muestra un mensaje de "disponible pronto" en caso contrario.
+
+`VITE_SIGNUP_URL` funciona igual para el botón "Registrarse" y para elegir un plan: redirige a una página de registro externa. Sin esa variable, se abre el diálogo con un formulario de registro (nombre, correo y contraseña, con el plan seleccionado si aplica) que envía los datos a `VITE_SIGNUP_ENDPOINT` si está definido, o muestra el mismo aviso de "disponible pronto".
 
 ## Estado actual
 

@@ -249,11 +249,22 @@
     "noAccount": "Don't have an account?",
     "signup": "Sign up"
   },
+  "signup": {
+    "title": "Create your RentBuild account",
+    "body": "Fill in your details to request access to RentBuild.",
+    "name": "Full name",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Create account",
+    "submitting": "Creating account…",
+    "success": "You're set! We received your request and will reach out soon to activate your account.",
+    "error": "We couldn't create your account. Please try again later.",
+    "unavailable": "Sign up will be available soon. Your details have not been sent or saved.",
+    "hasAccount": "Already have an account?",
+    "login": "Log in"
+  },
   "access": {
-    "title": "RentBuild is coming soon",
-    "body": "Account access is not available yet. Explore the platform and plans while we prepare the launch.",
     "selected": "Selected plan",
-    "contact": "Contact the team",
     "understood": "Keep exploring",
     "close": "Close dialog",
     "legalTitle": "Information coming soon",
