@@ -19,6 +19,27 @@ const displayName = computed(() => {
       <span class="eyebrow">RENTBUILD</span>
       <h1>{{ t('dashboard.welcome', { name: displayName }) }}</h1>
       <p>{{ t('dashboard.body') }}</p>
+      <div class="profile-card">
+        <h2>{{ t('dashboard.profileTitle') }}</h2>
+        <dl class="profile-info">
+          <div class="profile-info__row">
+            <dt>{{ t('dashboard.profile.name') }}</dt>
+            <dd>{{ user.name || t('dashboard.profile.empty') }}</dd>
+          </div>
+          <div class="profile-info__row">
+            <dt>{{ t('dashboard.profile.email') }}</dt>
+            <dd>{{ user.email || t('dashboard.profile.empty') }}</dd>
+          </div>
+          <div class="profile-info__row">
+            <dt>{{ t('dashboard.profile.company') }}</dt>
+            <dd>{{ user.company || t('dashboard.profile.empty') }}</dd>
+          </div>
+          <div class="profile-info__row">
+            <dt>{{ t('dashboard.profile.phone') }}</dt>
+            <dd>{{ user.phone || t('dashboard.profile.empty') }}</dd>
+          </div>
+        </dl>
+      </div>
       <button class="btn" type="button" @click="$emit('logout')">{{ t('dashboard.logout') }}</button>
     </div>
   </div>

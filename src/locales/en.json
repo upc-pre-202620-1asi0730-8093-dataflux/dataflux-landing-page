@@ -252,6 +252,8 @@
     "body": "Fill in your details to request access to RentBuild.",
     "name": "Full name",
     "email": "Email address",
+    "company": "Company / Job site",
+    "phone": "Phone",
     "password": "Password",
     "submit": "Create account",
     "submitting": "Creating account…",
@@ -262,7 +264,15 @@
   "dashboard": {
     "welcome": "Welcome, {name}!",
     "body": "Your account will be activated soon. We'll reach out to give you full access to RentBuild.",
-    "logout": "Log out"
+    "logout": "Log out",
+    "profileTitle": "Your profile",
+    "profile": {
+      "name": "Full name",
+      "email": "Email address",
+      "company": "Company / Job site",
+      "phone": "Phone",
+      "empty": "Not provided"
+    }
   },
   "access": {
     "selected": "Selected plan",

@@ -104,7 +104,7 @@ El resultado se genera en `dist/`.
 - Newsletter con validación de email, manejo de errores y tiempo de espera configurable.
 - Sección "Contáctanos" con formulario (nombre, correo y mensaje), correo directo y enlaces a redes sociales.
 - Inicio de sesión y registro con formularios propios (correo/contraseña y nombre/correo/contraseña), enlazados entre sí y con el plan seleccionado cuando corresponde.
-- Dashboard de bienvenida tras iniciar sesión o registrarse (modo demo mientras no hay backend), con cierre de sesión y persistencia durante la pestaña activa.
+- Dashboard de bienvenida tras iniciar sesión o registrarse (modo demo mientras no hay backend), con tarjeta de perfil de solo lectura (nombre, correo, empresa/obra y teléfono), cierre de sesión y persistencia durante la pestaña activa.
 - Soporte para movimiento reducido y navegación por teclado.
 
 ## Conectar servicios reales
@@ -133,7 +133,7 @@ Estas URLs son ejemplos y no apuntan a servicios reales de RentBuild. Las variab
 
 `VITE_LOGIN_URL` redirige de inmediato a una página de login externa al pulsar "Ingresar" en el navbar. Si no está configurada, se abre el diálogo con un formulario de inicio de sesión (correo y contraseña).
 
-`VITE_SIGNUP_URL` funciona igual para el botón "Registrarse" y para elegir un plan: redirige a una página de registro externa. Sin esa variable, se abre el diálogo con un formulario de registro (nombre, correo y contraseña, con el plan seleccionado si aplica).
+`VITE_SIGNUP_URL` funciona igual para el botón "Registrarse" y para elegir un plan: redirige a una página de registro externa. Sin esa variable, se abre el diálogo con un formulario de registro (nombre, correo, empresa/obra, teléfono y contraseña, con el plan seleccionado si aplica).
 
 Al enviar cualquiera de los dos formularios: si `VITE_LOGIN_ENDPOINT`/`VITE_SIGNUP_ENDPOINT` está definido, los datos se envían por `POST` a ese endpoint; si falla, se muestra un mensaje de error. En ambos casos (endpoint configurado con éxito, o sin endpoint configurado — modo demo), el usuario pasa directo al dashboard de bienvenida (`UserDashboard.vue`) con datos ficticios, ya que todavía no existe backend real de autenticación. La sesión demo se guarda en `sessionStorage` y se cierra con el botón "Cerrar sesión" o al cerrar la pestaña.
 

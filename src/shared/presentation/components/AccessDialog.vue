@@ -12,7 +12,7 @@ const signupEndpoint = import.meta.env.VITE_SIGNUP_ENDPOINT
 const loginForm = reactive({ email: '', password: '' })
 const loginStatus = ref('')
 const loginSubmitting = ref(false)
-const signupForm = reactive({ name: '', email: '', password: '' })
+const signupForm = reactive({ name: '', email: '', company: '', phone: '', password: '' })
 const signupStatus = ref('')
 const signupSubmitting = ref(false)
 const isLogin = computed(() => detail.value.mode === 'login')
@@ -41,6 +41,8 @@ function onClose() {
   loginStatus.value = ''
   signupForm.name = ''
   signupForm.email = ''
+  signupForm.company = ''
+  signupForm.phone = ''
   signupForm.password = ''
   signupStatus.value = ''
 }
@@ -85,7 +87,7 @@ async function submitSignup() {
   const ok = signupEndpoint ? await postJson(signupEndpoint, payload) : true
   signupSubmitting.value = false
   if (!ok) { signupStatus.value = 'error'; return }
-  enterDashboard({ name: signupForm.name, email: signupForm.email })
+  enterDashboard({ name: signupForm.name, email: signupForm.email, company: signupForm.company, phone: signupForm.phone })
 }
 defineExpose({ open })
 </script>
@@ -123,6 +125,16 @@ defineExpose({ open })
         <label for="signup-email">{{ t('signup.email') }}</label>
         <input id="signup-email" v-model="signupForm.email" type="email" name="email" autocomplete="email" required
           maxlength="254" :disabled="signupSubmitting">
+      </div>
+      <div class="login-form__row">
+        <label for="signup-company">{{ t('signup.company') }}</label>
+        <input id="signup-company" v-model="signupForm.company" type="text" name="organization"
+          autocomplete="organization" required maxlength="120" :disabled="signupSubmitting">
+      </div>
+      <div class="login-form__row">
+        <label for="signup-phone">{{ t('signup.phone') }}</label>
+        <input id="signup-phone" v-model="signupForm.phone" type="tel" name="tel" autocomplete="tel"
+          maxlength="30" :disabled="signupSubmitting">
       </div>
       <div class="login-form__row">
         <label for="signup-password">{{ t('signup.password') }}</label>
