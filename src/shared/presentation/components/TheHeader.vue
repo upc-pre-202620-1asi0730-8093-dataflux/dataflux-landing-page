@@ -6,7 +6,7 @@ import BrandLogo from './BrandLogo.vue'
 defineEmits(['access'])
 const { t, locale } = useI18n()
 const menuOpen = ref(false)
-const links = [ ['how-it-works', 'how'], ['features', 'teams'], ['plans', 'plans'], ['our-team', 'team'] ]
+const links = [ ['how-it-works', 'how'], ['features', 'teams'], ['plans', 'plans'], ['our-team', 'team'], ['contact', 'contact'] ]
 const activeSection = ref('home')
 let observer
 const menuButton = ref(null)

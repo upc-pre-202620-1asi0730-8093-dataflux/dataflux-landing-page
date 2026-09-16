@@ -62,6 +62,7 @@ src/
   value-proposition/presentation/components/
     AboutRentBuild.vue
     AppFeatures.vue
+    ContactUs.vue
     OperationOverview.vue
     OurTeam.vue
     PricingCard.vue
@@ -100,6 +101,7 @@ El resultado se genera en `dist/`.
 - Selector de plan y período de facturación con confirmación visual.
 - Diálogo de acceso con bloqueo de scroll y restauración del foco.
 - Newsletter con validación de email, manejo de errores y tiempo de espera configurable.
+- Sección "Contáctanos" con formulario (nombre, correo y mensaje), correo directo y enlaces a redes sociales.
 - Soporte para movimiento reducido y navegación por teclado.
 
 ## Conectar servicios reales
@@ -115,6 +117,11 @@ VITE_CONTACT_EMAIL=contacto@tu-dominio.example
 VITE_NEWSLETTER_ENDPOINT=https://tu-api.example/newsletter
 VITE_TERMS_URL=https://tu-dominio.example/terminos
 VITE_PRIVACY_URL=https://tu-dominio.example/privacidad
+VITE_CONTACT_FORM_ENDPOINT=https://tu-api.example/contacto
+VITE_SOCIAL_GITHUB=https://github.com/tu-organizacion
+VITE_SOCIAL_X=https://x.com/tu-cuenta
+VITE_SOCIAL_DISCORD=https://discord.gg/tu-servidor
+VITE_SOCIAL_BLUESKY=https://bsky.app/profile/tu-cuenta
 ```
 
 Estas URLs son ejemplos y no apuntan a servicios reales de RentBuild. Las variables `VITE_` son públicas en el navegador, así que no se deben incluir claves privadas o tokens sensibles.

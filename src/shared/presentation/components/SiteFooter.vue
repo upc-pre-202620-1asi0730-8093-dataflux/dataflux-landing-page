@@ -36,7 +36,7 @@ async function subscribe() {
 </script>
 
 <template>
-  <footer id="contact" class="site-footer">
+  <footer class="site-footer">
     <div class="container">
       <div class="site-footer__grid">
         <div class="site-footer__brand">

@@ -9,6 +9,7 @@ import AppFeatures from './value-proposition/presentation/components/AppFeatures
 import RentalBenefits from './value-proposition/presentation/components/RentalBenefits.vue'
 import ProductShowcase from './value-proposition/presentation/components/ProductShowcase.vue'
 import PricingPlans from './value-proposition/presentation/components/PricingPlans.vue'
+import ContactUs from './value-proposition/presentation/components/ContactUs.vue'
 import OurTeam from './value-proposition/presentation/components/OurTeam.vue'
 import AboutRentBuild from './value-proposition/presentation/components/AboutRentBuild.vue'
 
@@ -30,6 +31,7 @@ function openAccess(detail = {}) {
       <OurTeam />
       <AboutRentBuild />
       <PricingPlans @access="openAccess" />
+      <ContactUs />
     </main>
     <SiteFooter @access="openAccess" />
     <AccessDialog ref="accessDialog" />

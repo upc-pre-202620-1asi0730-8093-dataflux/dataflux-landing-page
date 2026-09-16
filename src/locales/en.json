@@ -7,6 +7,7 @@
     "teams": "Teams",
     "plans": "Plans",
     "team": "Our Team",
+    "contact": "Contact us",
     "login": "Login",
     "signup": "Sign up",
     "language": "Change language to Spanish"
@@ -151,6 +152,19 @@
       ],
       "cta": "Select Premium"
     }
+  },
+  "contact": {
+    "title": "Contact us",
+    "body": "Have questions about RentBuild? Write to us and we'll get back to you shortly.",
+    "name": "Full name",
+    "email": "Email address",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Thank you! We received your message and will get back to you soon.",
+    "error": "We couldn't send your message. Please try again later.",
+    "unavailable": "This form is coming soon. Your message has not been sent or saved.",
+    "social": "RentBuild social media"
   },
   "team": {
     "title": "Our Team",

@@ -556,8 +556,16 @@
   .features,
   .benefits,
   .pricing,
-  .team {
+  .team,
+  .contact {
     padding-block: 58px;
+  }
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .contact-form {
+    padding: 26px;
   }
   .showcase .section-heading {
     margin-bottom: 36px;
