@@ -269,7 +269,8 @@
     "tabs": {
       "profile": "Profile",
       "inventory": "Inventory",
-      "register": "Register machinery"
+      "register": "Register machinery",
+      "requests": "Requests"
     },
     "profileTitle": "Your profile",
     "profile": {
@@ -324,6 +325,18 @@
         "fields": "Please fill in the equipment name and category.",
         "total": "Total units must be at least 1.",
         "available": "Available units must be between 0 and the total units."
+      }
+    },
+    "requests": {
+      "title": "My rental requests",
+      "machine": "Machinery",
+      "dates": "Rental dates",
+      "status": "Status",
+      "dateRange": "{start} – {end}",
+      "statuses": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
       }
     }
   },

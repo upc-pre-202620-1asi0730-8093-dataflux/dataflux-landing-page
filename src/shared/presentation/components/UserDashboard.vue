@@ -56,6 +56,19 @@ function registerMachine() {
 function showMachineDetail(item) {
   machineDialog.value.open(item)
 }
+
+const rentalRequests = ref([
+  { id: 'req-1', machineId: 'excavator', startDate: '2026-09-20', endDate: '2026-09-27', status: 'pending' },
+  { id: 'req-2', machineId: 'compactor', startDate: '2026-09-18', endDate: '2026-09-22', status: 'approved' },
+  { id: 'req-3', machineId: 'crane', startDate: '2026-09-25', endDate: '2026-10-05', status: 'pending' },
+  { id: 'req-4', machineId: 'generator', startDate: '2026-09-15', endDate: '2026-09-19', status: 'rejected' },
+])
+
+function machineName(machineId) {
+  const item = inventoryItems.value.find(i => i.id === machineId)
+  if (!item) return machineId
+  return item.custom ? item.name : t(`dashboard.inventory.items.${item.id}.name`)
+}
 </script>
 
 <template>
@@ -73,6 +86,8 @@ function showMachineDetail(item) {
           :class="{ 'is-active': activeTab === 'inventory' }" @click="activeTab = 'inventory'">{{ t('dashboard.tabs.inventory') }}</button>
         <button type="button" :aria-pressed="activeTab === 'register'"
           :class="{ 'is-active': activeTab === 'register' }" @click="activeTab = 'register'">{{ t('dashboard.tabs.register') }}</button>
+        <button type="button" :aria-pressed="activeTab === 'requests'"
+          :class="{ 'is-active': activeTab === 'requests' }" @click="activeTab = 'requests'">{{ t('dashboard.tabs.requests') }}</button>
       </div>
 
       <div v-if="activeTab === 'profile'" class="profile-card">
@@ -125,7 +140,7 @@ function showMachineDetail(item) {
         </div>
       </div>
 
-      <div v-else class="register-card">
+      <div v-else-if="activeTab === 'register'" class="register-card">
         <h2>{{ t('dashboard.register.title') }}</h2>
         <form class="register-form" @submit.prevent="registerMachine">
           <div class="register-form__row">
@@ -159,6 +174,30 @@ function showMachineDetail(item) {
           <p v-if="machineFormError" class="register-form__status register-form__status--error" role="status">{{ t(`dashboard.register.errors.${machineFormError}`) }}</p>
           <p v-else-if="machineFormSuccess" class="register-form__status register-form__status--success" role="status">{{ t('dashboard.register.success') }}</p>
         </form>
+      </div>
+
+      <div v-else class="requests-card">
+        <h2>{{ t('dashboard.requests.title') }}</h2>
+        <div class="inventory-table-wrap">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ t('dashboard.requests.machine') }}</th>
+                <th scope="col">{{ t('dashboard.requests.dates') }}</th>
+                <th scope="col">{{ t('dashboard.requests.status') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="request in rentalRequests" :key="request.id">
+                <td>{{ machineName(request.machineId) }}</td>
+                <td>{{ t('dashboard.requests.dateRange', { start: request.startDate, end: request.endDate }) }}</td>
+                <td>
+                  <span class="status-badge" :class="`status-badge--${request.status}`">{{ t(`dashboard.requests.statuses.${request.status}`) }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <button class="btn" type="button" @click="$emit('logout')">{{ t('dashboard.logout') }}</button>
