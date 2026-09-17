@@ -271,7 +271,8 @@
       "inventory": "Inventory",
       "register": "Register machinery",
       "requests": "Requests",
-      "activeRentals": "Active rentals"
+      "activeRentals": "Active rentals",
+      "maintenance": "Maintenance"
     },
     "profileTitle": "Your profile",
     "profile": {
@@ -351,6 +352,26 @@
       "costValue": "{cost} USD",
       "inProgress": "In progress · {days} days left",
       "upcoming": "Starts in {days} days"
+    },
+    "maintenance": {
+      "title": "Register maintenance or incident",
+      "machine": "Machinery",
+      "selectMachine": "Select equipment",
+      "type": "Type",
+      "types": {
+        "maintenance": "Maintenance",
+        "incident": "Incident"
+      },
+      "date": "Date",
+      "description": "Description",
+      "submit": "Save record",
+      "success": "Record saved successfully.",
+      "logTitle": "Maintenance & incident log",
+      "errors": {
+        "machine": "Please select a piece of equipment.",
+        "description": "Please describe the maintenance or incident.",
+        "date": "Please select a date."
+      }
     }
   },
   "access": {

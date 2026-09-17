@@ -271,7 +271,8 @@
       "inventory": "Inventario",
       "register": "Registrar maquinaria",
       "requests": "Solicitudes",
-      "activeRentals": "Alquileres activos"
+      "activeRentals": "Alquileres activos",
+      "maintenance": "Mantenimiento"
     },
     "profileTitle": "Tu perfil",
     "profile": {
@@ -351,6 +352,26 @@
       "costValue": "{cost} USD",
       "inProgress": "En curso · {days} días restantes",
       "upcoming": "Comienza en {days} días"
+    },
+    "maintenance": {
+      "title": "Registrar mantenimiento o incidencia",
+      "machine": "Maquinaria",
+      "selectMachine": "Selecciona un equipo",
+      "type": "Tipo",
+      "types": {
+        "maintenance": "Mantenimiento",
+        "incident": "Incidencia"
+      },
+      "date": "Fecha",
+      "description": "Descripción",
+      "submit": "Guardar registro",
+      "success": "Registro guardado correctamente.",
+      "logTitle": "Historial de mantenimiento e incidencias",
+      "errors": {
+        "machine": "Selecciona un equipo.",
+        "description": "Describe el mantenimiento o la incidencia.",
+        "date": "Selecciona una fecha."
+      }
     }
   },
   "access": {

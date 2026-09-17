@@ -86,6 +86,36 @@ const activeRentals = computed(() => rentalRequests.value
     const daysRemaining = inProgress ? daysBetween(todayIso, request.endDate) : daysBetween(todayIso, request.startDate)
     return { id: request.id, machineId: request.machineId, startDate: request.startDate, endDate: request.endDate, rate, cost, inProgress, daysRemaining }
   }))
+
+const maintenanceRecords = ref([
+  { id: 'maint-1', machineId: 'compactor', type: 'maintenance', description: 'Scheduled inspection and hydraulic fluid change.', date: '2026-09-01' },
+  { id: 'maint-2', machineId: 'crane', type: 'incident', description: 'Reported abnormal noise in the lifting motor during operation.', date: '2026-09-05' },
+])
+const maintenanceForm = reactive({ machineId: '', type: 'maintenance', description: '', date: todayIso })
+const maintenanceFormError = ref('')
+const maintenanceFormSuccess = ref(false)
+
+function registerMaintenance() {
+  maintenanceFormSuccess.value = false
+  const machineId = maintenanceForm.machineId
+  const description = maintenanceForm.description.trim()
+  const date = maintenanceForm.date
+  if (!machineId) { maintenanceFormError.value = 'machine'; return }
+  if (!description) { maintenanceFormError.value = 'description'; return }
+  if (!date) { maintenanceFormError.value = 'date'; return }
+  maintenanceFormError.value = ''
+  maintenanceRecords.value.unshift({ id: `maint-${Date.now()}`, machineId, type: maintenanceForm.type, description, date })
+  const item = inventoryItems.value.find(i => i.id === machineId)
+  if (item) {
+    item.status = 'maintenance'
+    item.lastMaintenance = date
+  }
+  maintenanceForm.machineId = ''
+  maintenanceForm.type = 'maintenance'
+  maintenanceForm.description = ''
+  maintenanceForm.date = todayIso
+  maintenanceFormSuccess.value = true
+}
 </script>
 
 <template>
@@ -107,6 +137,8 @@ const activeRentals = computed(() => rentalRequests.value
           :class="{ 'is-active': activeTab === 'requests' }" @click="activeTab = 'requests'">{{ t('dashboard.tabs.requests') }}</button>
         <button type="button" :aria-pressed="activeTab === 'activeRentals'"
           :class="{ 'is-active': activeTab === 'activeRentals' }" @click="activeTab = 'activeRentals'">{{ t('dashboard.tabs.activeRentals') }}</button>
+        <button type="button" :aria-pressed="activeTab === 'maintenance'"
+          :class="{ 'is-active': activeTab === 'maintenance' }" @click="activeTab = 'maintenance'">{{ t('dashboard.tabs.maintenance') }}</button>
       </div>
 
       <div v-if="activeTab === 'profile'" class="profile-card">
@@ -219,7 +251,7 @@ const activeRentals = computed(() => rentalRequests.value
         </div>
       </div>
 
-      <div v-else class="active-rentals-card">
+      <div v-else-if="activeTab === 'activeRentals'" class="active-rentals-card">
         <h2>{{ t('dashboard.activeRentals.title') }}</h2>
         <p v-if="activeRentals.length === 0" class="active-rentals-empty">{{ t('dashboard.activeRentals.empty') }}</p>
         <div v-else class="inventory-table-wrap">
@@ -244,6 +276,63 @@ const activeRentals = computed(() => rentalRequests.value
                     {{ rental.inProgress ? t('dashboard.activeRentals.inProgress', { days: rental.daysRemaining }) : t('dashboard.activeRentals.upcoming', { days: rental.daysRemaining }) }}
                   </span>
                 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div v-else class="maintenance-card">
+        <h2>{{ t('dashboard.maintenance.title') }}</h2>
+        <form class="register-form" @submit.prevent="registerMaintenance">
+          <div class="register-form__row">
+            <label for="maintenance-machine">{{ t('dashboard.maintenance.machine') }}</label>
+            <select id="maintenance-machine" v-model="maintenanceForm.machineId" name="machine" required>
+              <option value="" disabled>{{ t('dashboard.maintenance.selectMachine') }}</option>
+              <option v-for="item in inventoryItems" :key="item.id" :value="item.id">{{ machineName(item.id) }}</option>
+            </select>
+          </div>
+          <div class="register-form__grid register-form__grid--two">
+            <div class="register-form__row">
+              <label for="maintenance-type">{{ t('dashboard.maintenance.type') }}</label>
+              <select id="maintenance-type" v-model="maintenanceForm.type" name="type">
+                <option value="maintenance">{{ t('dashboard.maintenance.types.maintenance') }}</option>
+                <option value="incident">{{ t('dashboard.maintenance.types.incident') }}</option>
+              </select>
+            </div>
+            <div class="register-form__row">
+              <label for="maintenance-date">{{ t('dashboard.maintenance.date') }}</label>
+              <input id="maintenance-date" v-model="maintenanceForm.date" type="date" name="date" required>
+            </div>
+          </div>
+          <div class="register-form__row">
+            <label for="maintenance-description">{{ t('dashboard.maintenance.description') }}</label>
+            <textarea id="maintenance-description" v-model="maintenanceForm.description" name="description" rows="3" required maxlength="300"></textarea>
+          </div>
+          <button type="submit" class="btn">{{ t('dashboard.maintenance.submit') }}</button>
+          <p v-if="maintenanceFormError" class="register-form__status register-form__status--error" role="status">{{ t(`dashboard.maintenance.errors.${maintenanceFormError}`) }}</p>
+          <p v-else-if="maintenanceFormSuccess" class="register-form__status register-form__status--success" role="status">{{ t('dashboard.maintenance.success') }}</p>
+        </form>
+
+        <h3 class="maintenance-log-title">{{ t('dashboard.maintenance.logTitle') }}</h3>
+        <div class="inventory-table-wrap">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ t('dashboard.maintenance.machine') }}</th>
+                <th scope="col">{{ t('dashboard.maintenance.type') }}</th>
+                <th scope="col">{{ t('dashboard.maintenance.description') }}</th>
+                <th scope="col">{{ t('dashboard.maintenance.date') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="record in maintenanceRecords" :key="record.id">
+                <td>{{ machineName(record.machineId) }}</td>
+                <td>
+                  <span class="status-badge" :class="record.type === 'incident' ? 'status-badge--rejected' : 'status-badge--maintenance'">{{ t(`dashboard.maintenance.types.${record.type}`) }}</span>
+                </td>
+                <td class="cell-wrap">{{ record.description }}</td>
+                <td>{{ record.date }}</td>
               </tr>
             </tbody>
           </table>
