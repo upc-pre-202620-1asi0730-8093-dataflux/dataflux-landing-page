@@ -270,7 +270,8 @@
       "profile": "Perfil",
       "inventory": "Inventario",
       "register": "Registrar maquinaria",
-      "requests": "Solicitudes"
+      "requests": "Solicitudes",
+      "activeRentals": "Alquileres activos"
     },
     "profileTitle": "Tu perfil",
     "profile": {
@@ -338,6 +339,18 @@
         "approved": "Aprobada",
         "rejected": "Rechazada"
       }
+    },
+    "activeRentals": {
+      "title": "Alquileres activos",
+      "empty": "No tienes alquileres activos en este momento.",
+      "machine": "Maquinaria",
+      "period": "Periodo de alquiler",
+      "rate": "Tarifa diaria",
+      "cost": "Costo estimado",
+      "status": "Estado",
+      "costValue": "{cost} USD",
+      "inProgress": "En curso · {days} días restantes",
+      "upcoming": "Comienza en {days} días"
     }
   },
   "access": {

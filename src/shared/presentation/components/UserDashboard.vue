@@ -62,6 +62,7 @@ const rentalRequests = ref([
   { id: 'req-2', machineId: 'compactor', startDate: '2026-09-18', endDate: '2026-09-22', status: 'approved' },
   { id: 'req-3', machineId: 'crane', startDate: '2026-09-25', endDate: '2026-10-05', status: 'pending' },
   { id: 'req-4', machineId: 'generator', startDate: '2026-09-15', endDate: '2026-09-19', status: 'rejected' },
+  { id: 'req-5', machineId: 'loader', startDate: '2026-09-10', endDate: '2026-09-18', status: 'approved' },
 ])
 
 function machineName(machineId) {
@@ -69,6 +70,22 @@ function machineName(machineId) {
   if (!item) return machineId
   return item.custom ? item.name : t(`dashboard.inventory.items.${item.id}.name`)
 }
+
+function daysBetween(fromIso, toIso) {
+  return Math.round((new Date(toIso) - new Date(fromIso)) / 86400000)
+}
+const todayIso = new Date().toISOString().slice(0, 10)
+const activeRentals = computed(() => rentalRequests.value
+  .filter(request => request.status === 'approved' && request.endDate >= todayIso)
+  .map(request => {
+    const item = inventoryItems.value.find(i => i.id === request.machineId)
+    const rate = item?.rate ?? null
+    const totalDays = daysBetween(request.startDate, request.endDate) + 1
+    const cost = rate !== null ? rate * totalDays : null
+    const inProgress = request.startDate <= todayIso
+    const daysRemaining = inProgress ? daysBetween(todayIso, request.endDate) : daysBetween(todayIso, request.startDate)
+    return { id: request.id, machineId: request.machineId, startDate: request.startDate, endDate: request.endDate, rate, cost, inProgress, daysRemaining }
+  }))
 </script>
 
 <template>
@@ -88,6 +105,8 @@ function machineName(machineId) {
           :class="{ 'is-active': activeTab === 'register' }" @click="activeTab = 'register'">{{ t('dashboard.tabs.register') }}</button>
         <button type="button" :aria-pressed="activeTab === 'requests'"
           :class="{ 'is-active': activeTab === 'requests' }" @click="activeTab = 'requests'">{{ t('dashboard.tabs.requests') }}</button>
+        <button type="button" :aria-pressed="activeTab === 'activeRentals'"
+          :class="{ 'is-active': activeTab === 'activeRentals' }" @click="activeTab = 'activeRentals'">{{ t('dashboard.tabs.activeRentals') }}</button>
       </div>
 
       <div v-if="activeTab === 'profile'" class="profile-card">
@@ -176,7 +195,7 @@ function machineName(machineId) {
         </form>
       </div>
 
-      <div v-else class="requests-card">
+      <div v-else-if="activeTab === 'requests'" class="requests-card">
         <h2>{{ t('dashboard.requests.title') }}</h2>
         <div class="inventory-table-wrap">
           <table class="inventory-table">
@@ -193,6 +212,37 @@ function machineName(machineId) {
                 <td>{{ t('dashboard.requests.dateRange', { start: request.startDate, end: request.endDate }) }}</td>
                 <td>
                   <span class="status-badge" :class="`status-badge--${request.status}`">{{ t(`dashboard.requests.statuses.${request.status}`) }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div v-else class="active-rentals-card">
+        <h2>{{ t('dashboard.activeRentals.title') }}</h2>
+        <p v-if="activeRentals.length === 0" class="active-rentals-empty">{{ t('dashboard.activeRentals.empty') }}</p>
+        <div v-else class="inventory-table-wrap">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ t('dashboard.activeRentals.machine') }}</th>
+                <th scope="col">{{ t('dashboard.activeRentals.period') }}</th>
+                <th scope="col">{{ t('dashboard.activeRentals.rate') }}</th>
+                <th scope="col">{{ t('dashboard.activeRentals.cost') }}</th>
+                <th scope="col">{{ t('dashboard.activeRentals.status') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="rental in activeRentals" :key="rental.id">
+                <td>{{ machineName(rental.machineId) }}</td>
+                <td>{{ t('dashboard.requests.dateRange', { start: rental.startDate, end: rental.endDate }) }}</td>
+                <td>{{ rental.rate !== null ? t('dashboard.inventory.detail.rateValue', { rate: rental.rate }) : t('dashboard.profile.empty') }}</td>
+                <td>{{ rental.cost !== null ? t('dashboard.activeRentals.costValue', { cost: rental.cost }) : t('dashboard.profile.empty') }}</td>
+                <td>
+                  <span class="status-badge" :class="rental.inProgress ? 'status-badge--approved' : 'status-badge--pending'">
+                    {{ rental.inProgress ? t('dashboard.activeRentals.inProgress', { days: rental.daysRemaining }) : t('dashboard.activeRentals.upcoming', { days: rental.daysRemaining }) }}
+                  </span>
                 </td>
               </tr>
             </tbody>

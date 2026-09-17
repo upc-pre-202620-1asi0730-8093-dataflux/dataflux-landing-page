@@ -270,7 +270,8 @@
       "profile": "Profile",
       "inventory": "Inventory",
       "register": "Register machinery",
-      "requests": "Requests"
+      "requests": "Requests",
+      "activeRentals": "Active rentals"
     },
     "profileTitle": "Your profile",
     "profile": {
@@ -338,6 +339,18 @@
         "approved": "Approved",
         "rejected": "Rejected"
       }
+    },
+    "activeRentals": {
+      "title": "Active rentals",
+      "empty": "You have no active rentals right now.",
+      "machine": "Machinery",
+      "period": "Rental period",
+      "rate": "Daily rate",
+      "cost": "Estimated cost",
+      "status": "Status",
+      "costValue": "{cost} USD",
+      "inProgress": "In progress · {days} days left",
+      "upcoming": "Starts in {days} days"
     }
   },
   "access": {

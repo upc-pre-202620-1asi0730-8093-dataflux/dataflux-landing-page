@@ -185,6 +185,17 @@
   text-align: left;
   margin-bottom: 32px;
 }
+.active-rentals-card {
+  text-align: left;
+  margin-bottom: 32px;
+}
+.active-rentals-empty {
+  color: var(--color-muted);
+  font-size: 15px;
+  background: #f8f8fa;
+  border-radius: 16px;
+  padding: 24px 26px;
+}
 .register-card {
   text-align: left;
   margin-bottom: 32px;
