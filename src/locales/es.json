@@ -285,6 +285,7 @@
       "category": "Categoría",
       "status": "Estado",
       "units": "Unidades",
+      "viewDetail": "Ver detalle de la maquinaria",
       "statuses": {
         "available": "Disponible",
         "rented": "Alquilado",
@@ -292,12 +293,22 @@
         "reserved": "Reservado"
       },
       "items": {
-        "excavator": { "name": "Excavadora 01", "category": "Excavadoras" },
-        "crane": { "name": "Grúa Torre 02", "category": "Grúas" },
-        "compactor": { "name": "Compactadora 03", "category": "Compactación" },
-        "generator": { "name": "Generador 04", "category": "Generadores" },
-        "loader": { "name": "Cargador Frontal 05", "category": "Cargadores" },
-        "mixer": { "name": "Mezcladora de Concreto 06", "category": "Concreto" }
+        "excavator": { "name": "Excavadora 01", "category": "Excavadoras", "description": "Excavadora hidráulica compacta ideal para zanjeo y preparación de terreno en obras reducidas.", "location": "Patio A - Obra 12" },
+        "crane": { "name": "Grúa Torre 02", "category": "Grúas", "description": "Grúa torre fija para construcción de mediana altura y levantamiento de materiales.", "location": "Obra 7 - Centro" },
+        "compactor": { "name": "Compactadora 03", "category": "Compactación", "description": "Rodillo compactador vibratorio para compactación de suelo y asfalto.", "location": "Almacén B" },
+        "generator": { "name": "Generador 04", "category": "Generadores", "description": "Generador diésel que brinda energía de respaldo para obras y equipos.", "location": "Almacén A" },
+        "loader": { "name": "Cargador Frontal 05", "category": "Cargadores", "description": "Cargador frontal para mover y cargar materiales a granel.", "location": "Obra 3 - Patio Norte" },
+        "mixer": { "name": "Mezcladora de Concreto 06", "category": "Concreto", "description": "Mezcladora de concreto portátil para dosificación en obra.", "location": "Almacén C" }
+      },
+      "detail": {
+        "availability": "{available} de {total} unidades disponibles",
+        "description": "Descripción",
+        "location": "Ubicación",
+        "code": "Código de serie",
+        "rate": "Tarifa de renta",
+        "rateValue": "{rate} USD / día",
+        "lastMaintenance": "Último mantenimiento",
+        "close": "Cerrar detalle"
       }
     },
     "register": {

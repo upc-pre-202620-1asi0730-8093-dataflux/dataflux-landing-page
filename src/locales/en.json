@@ -285,6 +285,7 @@
       "category": "Category",
       "status": "Status",
       "units": "Units",
+      "viewDetail": "View machinery details",
       "statuses": {
         "available": "Available",
         "rented": "Rented",
@@ -292,12 +293,22 @@
         "reserved": "Reserved"
       },
       "items": {
-        "excavator": { "name": "Excavator 01", "category": "Excavators" },
-        "crane": { "name": "Tower Crane 02", "category": "Cranes" },
-        "compactor": { "name": "Compactor 03", "category": "Compaction" },
-        "generator": { "name": "Generator 04", "category": "Generators" },
-        "loader": { "name": "Front Loader 05", "category": "Loaders" },
-        "mixer": { "name": "Concrete Mixer 06", "category": "Concrete" }
+        "excavator": { "name": "Excavator 01", "category": "Excavators", "description": "Compact hydraulic excavator suited for trenching and site prep on tight job sites.", "location": "Yard A - Site 12" },
+        "crane": { "name": "Tower Crane 02", "category": "Cranes", "description": "Fixed tower crane for mid-rise construction and material lifting.", "location": "Site 7 - Downtown" },
+        "compactor": { "name": "Compactor 03", "category": "Compaction", "description": "Vibratory roller compactor for soil and asphalt compaction.", "location": "Warehouse B" },
+        "generator": { "name": "Generator 04", "category": "Generators", "description": "Diesel generator providing backup power for job sites and equipment.", "location": "Warehouse A" },
+        "loader": { "name": "Front Loader 05", "category": "Loaders", "description": "Front-end loader for moving and loading bulk materials.", "location": "Site 3 - North Yard" },
+        "mixer": { "name": "Concrete Mixer 06", "category": "Concrete", "description": "Portable concrete mixer for on-site batching.", "location": "Warehouse C" }
+      },
+      "detail": {
+        "availability": "{available} of {total} units available",
+        "description": "Description",
+        "location": "Location",
+        "code": "Serial code",
+        "rate": "Rental rate",
+        "rateValue": "{rate} USD / day",
+        "lastMaintenance": "Last maintenance",
+        "close": "Close details"
       }
     },
     "register": {

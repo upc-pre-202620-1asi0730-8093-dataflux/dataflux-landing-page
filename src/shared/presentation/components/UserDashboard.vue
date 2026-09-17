@@ -2,18 +2,20 @@
 import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BrandLogo from './BrandLogo.vue'
+import MachineDetailDialog from './MachineDetailDialog.vue'
 
 const props = defineProps({ user: { type: Object, required: true } })
 defineEmits(['logout'])
 const { t } = useI18n()
 const activeTab = ref('profile')
+const machineDialog = ref(null)
 const inventoryItems = ref([
-  { id: 'excavator', status: 'available', available: 3, total: 5, custom: false },
-  { id: 'crane', status: 'rented', available: 0, total: 2, custom: false },
-  { id: 'compactor', status: 'maintenance', available: 1, total: 3, custom: false },
-  { id: 'generator', status: 'available', available: 4, total: 4, custom: false },
-  { id: 'loader', status: 'reserved', available: 0, total: 1, custom: false },
-  { id: 'mixer', status: 'available', available: 2, total: 2, custom: false },
+  { id: 'excavator', status: 'available', available: 3, total: 5, custom: false, code: 'EXC-1001', rate: 180, lastMaintenance: '2026-08-02' },
+  { id: 'crane', status: 'rented', available: 0, total: 2, custom: false, code: 'CRN-2010', rate: 420, lastMaintenance: '2026-07-20' },
+  { id: 'compactor', status: 'maintenance', available: 1, total: 3, custom: false, code: 'CMP-3005', rate: 90, lastMaintenance: '2026-09-01' },
+  { id: 'generator', status: 'available', available: 4, total: 4, custom: false, code: 'GEN-4002', rate: 60, lastMaintenance: '2026-06-15' },
+  { id: 'loader', status: 'reserved', available: 0, total: 1, custom: false, code: 'LDR-5001', rate: 150, lastMaintenance: '2026-05-30' },
+  { id: 'mixer', status: 'available', available: 2, total: 2, custom: false, code: 'MIX-6003', rate: 75, lastMaintenance: '2026-08-10' },
 ])
 const displayName = computed(() => {
   const raw = props.user.name?.trim().split(' ')[0] || props.user.email?.split('@')[0] || ''
@@ -49,6 +51,10 @@ function registerMachine() {
   machineForm.total = 1
   machineForm.available = 1
   machineFormSuccess.value = true
+}
+
+function showMachineDetail(item) {
+  machineDialog.value.open(item)
 }
 </script>
 
@@ -104,7 +110,9 @@ function registerMachine() {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in inventoryItems" :key="item.id">
+              <tr v-for="item in inventoryItems" :key="item.id" class="inventory-table__row" tabindex="0" role="button"
+                :aria-label="t('dashboard.inventory.viewDetail')" @click="showMachineDetail(item)"
+                @keydown.enter="showMachineDetail(item)" @keydown.space.prevent="showMachineDetail(item)">
                 <td>{{ item.custom ? item.name : t(`dashboard.inventory.items.${item.id}.name`) }}</td>
                 <td>{{ item.custom ? item.category : t(`dashboard.inventory.items.${item.id}.category`) }}</td>
                 <td>
@@ -155,5 +163,6 @@ function registerMachine() {
 
       <button class="btn" type="button" @click="$emit('logout')">{{ t('dashboard.logout') }}</button>
     </div>
+    <MachineDetailDialog ref="machineDialog" />
   </div>
 </template>

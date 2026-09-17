@@ -161,3 +161,41 @@
 .login-form__signup button:hover {
   text-decoration: underline;
 }
+.machine-dialog__status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.machine-dialog__availability {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+.machine-dialog__description {
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  text-align: left;
+}
+.machine-dialog__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+  text-align: left;
+}
+.machine-dialog__field dt {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-bottom: 4px;
+}
+.machine-dialog__field dd {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+@media (max-width: 560px) {
+  .machine-dialog__grid {
+    grid-template-columns: 1fr;
+  }
+}
