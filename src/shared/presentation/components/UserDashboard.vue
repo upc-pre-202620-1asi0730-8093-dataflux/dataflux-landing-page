@@ -116,6 +116,29 @@ function registerMaintenance() {
   maintenanceForm.date = todayIso
   maintenanceFormSuccess.value = true
 }
+
+const historyFilter = ref('')
+const fullHistory = computed(() => {
+  const maintenanceEntries = maintenanceRecords.value.map(record => ({
+    id: record.id,
+    machineId: record.machineId,
+    date: record.date,
+    badgeClass: record.type === 'incident' ? 'status-badge--rejected' : 'status-badge--maintenance',
+    badgeText: t(`dashboard.maintenance.types.${record.type}`),
+    detail: record.description,
+  }))
+  const requestEntries = rentalRequests.value.map(request => ({
+    id: request.id,
+    machineId: request.machineId,
+    date: request.startDate,
+    badgeClass: `status-badge--${request.status}`,
+    badgeText: t(`dashboard.requests.statuses.${request.status}`),
+    detail: t('dashboard.history.requestDetail', { start: request.startDate, end: request.endDate }),
+  }))
+  return [...maintenanceEntries, ...requestEntries]
+    .filter(entry => !historyFilter.value || entry.machineId === historyFilter.value)
+    .sort((a, b) => b.date.localeCompare(a.date))
+})
 </script>
 
 <template>
@@ -139,6 +162,8 @@ function registerMaintenance() {
           :class="{ 'is-active': activeTab === 'activeRentals' }" @click="activeTab = 'activeRentals'">{{ t('dashboard.tabs.activeRentals') }}</button>
         <button type="button" :aria-pressed="activeTab === 'maintenance'"
           :class="{ 'is-active': activeTab === 'maintenance' }" @click="activeTab = 'maintenance'">{{ t('dashboard.tabs.maintenance') }}</button>
+        <button type="button" :aria-pressed="activeTab === 'history'"
+          :class="{ 'is-active': activeTab === 'history' }" @click="activeTab = 'history'">{{ t('dashboard.tabs.history') }}</button>
       </div>
 
       <div v-if="activeTab === 'profile'" class="profile-card">
@@ -282,7 +307,7 @@ function registerMaintenance() {
         </div>
       </div>
 
-      <div v-else class="maintenance-card">
+      <div v-else-if="activeTab === 'maintenance'" class="maintenance-card">
         <h2>{{ t('dashboard.maintenance.title') }}</h2>
         <form class="register-form" @submit.prevent="registerMaintenance">
           <div class="register-form__row">
@@ -333,6 +358,40 @@ function registerMaintenance() {
                 </td>
                 <td class="cell-wrap">{{ record.description }}</td>
                 <td>{{ record.date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div v-else class="history-card">
+        <h2>{{ t('dashboard.history.title') }}</h2>
+        <div class="history-filter">
+          <label for="history-machine-filter">{{ t('dashboard.history.filter') }}</label>
+          <select id="history-machine-filter" v-model="historyFilter">
+            <option value="">{{ t('dashboard.history.allMachines') }}</option>
+            <option v-for="item in inventoryItems" :key="item.id" :value="item.id">{{ machineName(item.id) }}</option>
+          </select>
+        </div>
+        <p v-if="fullHistory.length === 0" class="active-rentals-empty">{{ t('dashboard.history.empty') }}</p>
+        <div v-else class="inventory-table-wrap">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ t('dashboard.history.machine') }}</th>
+                <th scope="col">{{ t('dashboard.history.event') }}</th>
+                <th scope="col">{{ t('dashboard.history.date') }}</th>
+                <th scope="col">{{ t('dashboard.history.detail') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="entry in fullHistory" :key="entry.id">
+                <td>{{ machineName(entry.machineId) }}</td>
+                <td>
+                  <span class="status-badge" :class="entry.badgeClass">{{ entry.badgeText }}</span>
+                </td>
+                <td>{{ entry.date }}</td>
+                <td class="cell-wrap">{{ entry.detail }}</td>
               </tr>
             </tbody>
           </table>

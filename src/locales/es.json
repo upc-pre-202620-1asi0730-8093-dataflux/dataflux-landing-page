@@ -272,7 +272,8 @@
       "register": "Registrar maquinaria",
       "requests": "Solicitudes",
       "activeRentals": "Alquileres activos",
-      "maintenance": "Mantenimiento"
+      "maintenance": "Mantenimiento",
+      "history": "Historial"
     },
     "profileTitle": "Tu perfil",
     "profile": {
@@ -313,6 +314,17 @@
         "lastMaintenance": "Último mantenimiento",
         "close": "Cerrar detalle"
       }
+    },
+    "history": {
+      "title": "Historial de maquinaria",
+      "filter": "Filtrar por maquinaria",
+      "allMachines": "Toda la maquinaria",
+      "machine": "Maquinaria",
+      "event": "Evento",
+      "date": "Fecha",
+      "detail": "Detalle",
+      "empty": "Aún no hay historial registrado.",
+      "requestDetail": "Solicitud de alquiler: {start} – {end}"
     },
     "register": {
       "title": "Registrar nueva maquinaria",

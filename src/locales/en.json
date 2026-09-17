@@ -272,7 +272,8 @@
       "register": "Register machinery",
       "requests": "Requests",
       "activeRentals": "Active rentals",
-      "maintenance": "Maintenance"
+      "maintenance": "Maintenance",
+      "history": "History"
     },
     "profileTitle": "Your profile",
     "profile": {
@@ -313,6 +314,17 @@
         "lastMaintenance": "Last maintenance",
         "close": "Close details"
       }
+    },
+    "history": {
+      "title": "Machinery history",
+      "filter": "Filter by machinery",
+      "allMachines": "All machinery",
+      "machine": "Machinery",
+      "event": "Event",
+      "date": "Date",
+      "detail": "Detail",
+      "empty": "No history recorded yet.",
+      "requestDetail": "Rental request: {start} – {end}"
     },
     "register": {
       "title": "Register new machinery",

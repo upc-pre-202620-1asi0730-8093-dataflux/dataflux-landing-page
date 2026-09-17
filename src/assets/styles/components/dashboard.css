@@ -206,6 +206,40 @@
   color: var(--color-text);
   margin: 32px 0 14px;
 }
+.history-card {
+  text-align: left;
+  margin-bottom: 32px;
+}
+.history-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.history-filter label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.history-filter select {
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--color-text);
+  background: white;
+}
+.history-filter select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+@media (max-width: 480px) {
+  .history-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 .cell-wrap {
   white-space: normal;
   min-width: 220px;
