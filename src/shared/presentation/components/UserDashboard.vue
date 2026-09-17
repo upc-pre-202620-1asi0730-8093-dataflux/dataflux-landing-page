@@ -139,6 +139,30 @@ const fullHistory = computed(() => {
     .filter(entry => !historyFilter.value || entry.machineId === historyFilter.value)
     .sort((a, b) => b.date.localeCompare(a.date))
 })
+
+function machineCategory(machineId) {
+  const item = inventoryItems.value.find(i => i.id === machineId)
+  if (!item) return ''
+  return item.custom ? item.category : t(`dashboard.inventory.items.${item.id}.category`)
+}
+const catalogSearch = ref('')
+const catalogCategory = ref('')
+const catalogStatus = ref('')
+const categoryOptions = computed(() => {
+  const unique = new Set(inventoryItems.value.map(item => machineCategory(item.id)))
+  return Array.from(unique).sort()
+})
+const filteredCatalog = computed(() => {
+  const query = catalogSearch.value.trim().toLowerCase()
+  return inventoryItems.value.filter(item => {
+    const name = machineName(item.id).toLowerCase()
+    const category = machineCategory(item.id)
+    const matchesSearch = !query || name.includes(query) || category.toLowerCase().includes(query)
+    const matchesCategory = !catalogCategory.value || category === catalogCategory.value
+    const matchesStatus = !catalogStatus.value || item.status === catalogStatus.value
+    return matchesSearch && matchesCategory && matchesStatus
+  })
+})
 </script>
 
 <template>
@@ -164,6 +188,8 @@ const fullHistory = computed(() => {
           :class="{ 'is-active': activeTab === 'maintenance' }" @click="activeTab = 'maintenance'">{{ t('dashboard.tabs.maintenance') }}</button>
         <button type="button" :aria-pressed="activeTab === 'history'"
           :class="{ 'is-active': activeTab === 'history' }" @click="activeTab = 'history'">{{ t('dashboard.tabs.history') }}</button>
+        <button type="button" :aria-pressed="activeTab === 'catalog'"
+          :class="{ 'is-active': activeTab === 'catalog' }" @click="activeTab = 'catalog'">{{ t('dashboard.tabs.catalog') }}</button>
       </div>
 
       <div v-if="activeTab === 'profile'" class="profile-card">
@@ -364,7 +390,7 @@ const fullHistory = computed(() => {
         </div>
       </div>
 
-      <div v-else class="history-card">
+      <div v-else-if="activeTab === 'history'" class="history-card">
         <h2>{{ t('dashboard.history.title') }}</h2>
         <div class="history-filter">
           <label for="history-machine-filter">{{ t('dashboard.history.filter') }}</label>
@@ -395,6 +421,35 @@ const fullHistory = computed(() => {
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      <div v-else class="catalog-card">
+        <h2>{{ t('dashboard.catalog.title') }}</h2>
+        <div class="catalog-filters">
+          <input v-model="catalogSearch" type="search" :placeholder="t('dashboard.catalog.searchPlaceholder')" :aria-label="t('dashboard.catalog.search')">
+          <select v-model="catalogCategory" :aria-label="t('dashboard.catalog.allCategories')">
+            <option value="">{{ t('dashboard.catalog.allCategories') }}</option>
+            <option v-for="cat in categoryOptions" :key="cat" :value="cat">{{ cat }}</option>
+          </select>
+          <select v-model="catalogStatus" :aria-label="t('dashboard.catalog.allStatuses')">
+            <option value="">{{ t('dashboard.catalog.allStatuses') }}</option>
+            <option value="available">{{ t('dashboard.inventory.statuses.available') }}</option>
+            <option value="rented">{{ t('dashboard.inventory.statuses.rented') }}</option>
+            <option value="maintenance">{{ t('dashboard.inventory.statuses.maintenance') }}</option>
+            <option value="reserved">{{ t('dashboard.inventory.statuses.reserved') }}</option>
+          </select>
+        </div>
+        <p v-if="filteredCatalog.length === 0" class="active-rentals-empty">{{ t('dashboard.catalog.empty') }}</p>
+        <div v-else class="catalog-grid">
+          <button v-for="item in filteredCatalog" :key="item.id" type="button" class="catalog-item" @click="showMachineDetail(item)">
+            <span class="catalog-item__category">{{ machineCategory(item.id) }}</span>
+            <h3 class="catalog-item__name">{{ machineName(item.id) }}</h3>
+            <span class="status-badge" :class="`status-badge--${item.status}`">{{ t(`dashboard.inventory.statuses.${item.status}`) }}</span>
+            <p class="catalog-item__availability">{{ t('dashboard.inventory.detail.availability', { available: item.available, total: item.total }) }}</p>
+            <p class="catalog-item__rate">{{ item.rate ? t('dashboard.inventory.detail.rateValue', { rate: item.rate }) : t('dashboard.profile.empty') }}</p>
+            <span class="catalog-item__cta">{{ t('dashboard.catalog.viewDetail') }}</span>
+          </button>
         </div>
       </div>
 

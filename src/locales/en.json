@@ -273,7 +273,8 @@
       "requests": "Requests",
       "activeRentals": "Active rentals",
       "maintenance": "Maintenance",
-      "history": "History"
+      "history": "History",
+      "catalog": "Catalog"
     },
     "profileTitle": "Your profile",
     "profile": {
@@ -384,6 +385,15 @@
         "description": "Please describe the maintenance or incident.",
         "date": "Please select a date."
       }
+    },
+    "catalog": {
+      "title": "Machinery catalog",
+      "search": "Search machinery",
+      "searchPlaceholder": "Search by name or category…",
+      "allCategories": "All categories",
+      "allStatuses": "All statuses",
+      "empty": "No machinery matches your search.",
+      "viewDetail": "View details"
     }
   },
   "access": {

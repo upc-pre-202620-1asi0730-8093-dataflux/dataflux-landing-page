@@ -273,7 +273,8 @@
       "requests": "Solicitudes",
       "activeRentals": "Alquileres activos",
       "maintenance": "Mantenimiento",
-      "history": "Historial"
+      "history": "Historial",
+      "catalog": "Catálogo"
     },
     "profileTitle": "Tu perfil",
     "profile": {
@@ -384,6 +385,15 @@
         "description": "Describe el mantenimiento o la incidencia.",
         "date": "Selecciona una fecha."
       }
+    },
+    "catalog": {
+      "title": "Catálogo de maquinaria",
+      "search": "Buscar maquinaria",
+      "searchPlaceholder": "Buscar por nombre o categoría…",
+      "allCategories": "Todas las categorías",
+      "allStatuses": "Todos los estados",
+      "empty": "Ninguna maquinaria coincide con tu búsqueda.",
+      "viewDetail": "Ver detalle"
     }
   },
   "access": {
