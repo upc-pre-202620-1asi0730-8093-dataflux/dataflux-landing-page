@@ -268,7 +268,8 @@
     "tabsLabel": "Dashboard sections",
     "tabs": {
       "profile": "Profile",
-      "inventory": "Inventory"
+      "inventory": "Inventory",
+      "register": "Register machinery"
     },
     "profileTitle": "Your profile",
     "profile": {
@@ -297,6 +298,21 @@
         "generator": { "name": "Generator 04", "category": "Generators" },
         "loader": { "name": "Front Loader 05", "category": "Loaders" },
         "mixer": { "name": "Concrete Mixer 06", "category": "Concrete" }
+      }
+    },
+    "register": {
+      "title": "Register new machinery",
+      "name": "Equipment name",
+      "category": "Category",
+      "status": "Status",
+      "total": "Total units",
+      "available": "Available units",
+      "submit": "Register machinery",
+      "success": "Machinery registered successfully.",
+      "errors": {
+        "fields": "Please fill in the equipment name and category.",
+        "total": "Total units must be at least 1.",
+        "available": "Available units must be between 0 and the total units."
       }
     }
   },

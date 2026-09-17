@@ -268,7 +268,8 @@
     "tabsLabel": "Secciones del panel",
     "tabs": {
       "profile": "Perfil",
-      "inventory": "Inventario"
+      "inventory": "Inventario",
+      "register": "Registrar maquinaria"
     },
     "profileTitle": "Tu perfil",
     "profile": {
@@ -297,6 +298,21 @@
         "generator": { "name": "Generador 04", "category": "Generadores" },
         "loader": { "name": "Cargador Frontal 05", "category": "Cargadores" },
         "mixer": { "name": "Mezcladora de Concreto 06", "category": "Concreto" }
+      }
+    },
+    "register": {
+      "title": "Registrar nueva maquinaria",
+      "name": "Nombre del equipo",
+      "category": "Categoría",
+      "status": "Estado",
+      "total": "Unidades totales",
+      "available": "Unidades disponibles",
+      "submit": "Registrar maquinaria",
+      "success": "Maquinaria registrada correctamente.",
+      "errors": {
+        "fields": "Por favor completa el nombre del equipo y la categoría.",
+        "total": "Las unidades totales deben ser al menos 1.",
+        "available": "Las unidades disponibles deben estar entre 0 y el total de unidades."
       }
     }
   },

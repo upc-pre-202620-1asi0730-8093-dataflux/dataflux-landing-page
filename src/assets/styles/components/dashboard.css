@@ -157,3 +157,61 @@
   background: #e6e9ee;
   color: var(--color-navy);
 }
+.register-card {
+  text-align: left;
+  margin-bottom: 32px;
+}
+.register-form {
+  display: grid;
+  gap: 18px;
+  max-width: 480px;
+}
+.register-form__row {
+  display: grid;
+  gap: 8px;
+}
+.register-form__row label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.register-form__row input,
+.register-form__row select {
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-text);
+  background: white;
+  transition: border-color 0.2s;
+}
+.register-form__row input:focus,
+.register-form__row select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+.register-form__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.register-form .btn {
+  width: 100%;
+}
+.register-form__status {
+  min-height: 18px;
+  margin-top: -6px;
+  font-size: 13px;
+}
+.register-form__status--error {
+  color: #c0392b;
+}
+.register-form__status--success {
+  color: #1f8a5f;
+}
+@media (max-width: 560px) {
+  .register-form__grid {
+    grid-template-columns: 1fr;
+  }
+}
