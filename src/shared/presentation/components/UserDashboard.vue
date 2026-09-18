@@ -21,6 +21,31 @@ const displayName = computed(() => {
   const raw = props.user.name?.trim().split(' ')[0] || props.user.email?.split('@')[0] || ''
   return raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : ''
 })
+const avatarInitial = computed(() => {
+  const source = props.user.name?.trim() || props.user.email?.trim() || ''
+  return source ? source.charAt(0).toUpperCase() : '?'
+})
+
+const navIcons = {
+  profile: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="7" r="3"/><path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>',
+  inventory: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l6.2 3.2v7.6L10 17l-6.2-3.2V6.2L10 3z"/><path d="M3.8 6.2L10 9.4l6.2-3.2"/><path d="M10 9.4V17"/></svg>',
+  register: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M10 7v6M7 10h6"/></svg>',
+  requests: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L6 4.5h8l2.5 6.5"/><path d="M3.5 11v4a1 1 0 001 1h11a1 1 0 001-1v-4"/><path d="M3.5 11h4l1 2h3l1-2h4"/></svg>',
+  activeRentals: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="14" height="12" rx="2"/><path d="M3 8.5h14"/><path d="M7 2.5v3M13 2.5v3"/><path d="M7 12l2 2 4-4.5"/></svg>',
+  maintenance: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="3"/><path d="M10 2.5v2.3M10 15.2v2.3M2.5 10h2.3M15.2 10h2.3M4.9 4.9l1.6 1.6M13.5 13.5l1.6 1.6M15.1 4.9l-1.6 1.6M6.5 13.5l-1.6 1.6"/></svg>',
+  history: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.2A7 7 0 1110.3 17"/><path d="M4.5 3v3.5H8"/><path d="M10 7v3.3l2.3 1.4"/></svg>',
+  catalog: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>',
+}
+const navItems = computed(() => [
+  { key: 'profile', label: t('dashboard.tabs.profile') },
+  { key: 'inventory', label: t('dashboard.tabs.inventory') },
+  { key: 'register', label: t('dashboard.tabs.register') },
+  { key: 'requests', label: t('dashboard.tabs.requests') },
+  { key: 'activeRentals', label: t('dashboard.tabs.activeRentals') },
+  { key: 'maintenance', label: t('dashboard.tabs.maintenance') },
+  { key: 'history', label: t('dashboard.tabs.history') },
+  { key: 'catalog', label: t('dashboard.tabs.catalog') },
+].map(item => ({ ...item, icon: navIcons[item.key] })))
 
 const machineForm = reactive({ name: '', category: '', status: 'available', total: 1, available: 1 })
 const machineFormError = ref('')
@@ -166,34 +191,40 @@ const filteredCatalog = computed(() => {
 </script>
 
 <template>
-  <div class="dashboard-home">
-    <div class="dashboard-home__card">
-      <BrandLogo />
-      <span class="eyebrow">RENTBUILD</span>
-      <h1>{{ t('dashboard.welcome', { name: displayName }) }}</h1>
-      <p>{{ t('dashboard.body') }}</p>
-
-      <div class="dashboard-tabs" role="group" :aria-label="t('dashboard.tabsLabel')">
-        <button type="button" :aria-pressed="activeTab === 'profile'"
-          :class="{ 'is-active': activeTab === 'profile' }" @click="activeTab = 'profile'">{{ t('dashboard.tabs.profile') }}</button>
-        <button type="button" :aria-pressed="activeTab === 'inventory'"
-          :class="{ 'is-active': activeTab === 'inventory' }" @click="activeTab = 'inventory'">{{ t('dashboard.tabs.inventory') }}</button>
-        <button type="button" :aria-pressed="activeTab === 'register'"
-          :class="{ 'is-active': activeTab === 'register' }" @click="activeTab = 'register'">{{ t('dashboard.tabs.register') }}</button>
-        <button type="button" :aria-pressed="activeTab === 'requests'"
-          :class="{ 'is-active': activeTab === 'requests' }" @click="activeTab = 'requests'">{{ t('dashboard.tabs.requests') }}</button>
-        <button type="button" :aria-pressed="activeTab === 'activeRentals'"
-          :class="{ 'is-active': activeTab === 'activeRentals' }" @click="activeTab = 'activeRentals'">{{ t('dashboard.tabs.activeRentals') }}</button>
-        <button type="button" :aria-pressed="activeTab === 'maintenance'"
-          :class="{ 'is-active': activeTab === 'maintenance' }" @click="activeTab = 'maintenance'">{{ t('dashboard.tabs.maintenance') }}</button>
-        <button type="button" :aria-pressed="activeTab === 'history'"
-          :class="{ 'is-active': activeTab === 'history' }" @click="activeTab = 'history'">{{ t('dashboard.tabs.history') }}</button>
-        <button type="button" :aria-pressed="activeTab === 'catalog'"
-          :class="{ 'is-active': activeTab === 'catalog' }" @click="activeTab = 'catalog'">{{ t('dashboard.tabs.catalog') }}</button>
+  <div class="dashboard-shell">
+    <aside class="dashboard-sidebar">
+      <div class="dashboard-sidebar__brand">
+        <BrandLogo />
       </div>
 
+      <nav class="dashboard-nav" :aria-label="t('dashboard.tabsLabel')">
+        <button v-for="tab in navItems" :key="tab.key" type="button" class="dashboard-nav__item"
+          :class="{ 'is-active': activeTab === tab.key }" :aria-pressed="activeTab === tab.key" @click="activeTab = tab.key">
+          <span class="dashboard-nav__icon" v-html="tab.icon"></span>
+          <span class="dashboard-nav__label">{{ tab.label }}</span>
+        </button>
+      </nav>
+
+      <div class="dashboard-sidebar__footer">
+        <div class="dashboard-user">
+          <span class="dashboard-user__avatar">{{ avatarInitial }}</span>
+          <div class="dashboard-user__info">
+            <span class="dashboard-user__name">{{ user.name || displayName || t('dashboard.profile.empty') }}</span>
+            <span class="dashboard-user__email">{{ user.email }}</span>
+          </div>
+        </div>
+        <button class="dashboard-logout" type="button" @click="$emit('logout')">{{ t('dashboard.logout') }}</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <h1>{{ t('dashboard.welcome', { name: displayName }) }}</h1>
+        <p>{{ t('dashboard.body') }}</p>
+      </header>
+
       <div v-if="activeTab === 'profile'" class="profile-card">
-        <h2>{{ t('dashboard.profileTitle') }}</h2>
+        <h2 class="panel-title">{{ t('dashboard.profileTitle') }}</h2>
         <dl class="profile-info">
           <div class="profile-info__row">
             <dt>{{ t('dashboard.profile.name') }}</dt>
@@ -215,7 +246,7 @@ const filteredCatalog = computed(() => {
       </div>
 
       <div v-else-if="activeTab === 'inventory'" class="inventory-card">
-        <h2>{{ t('dashboard.inventory.title') }}</h2>
+        <h2 class="panel-title">{{ t('dashboard.inventory.title') }}</h2>
         <div class="inventory-table-wrap">
           <table class="inventory-table">
             <thead>
@@ -243,7 +274,7 @@ const filteredCatalog = computed(() => {
       </div>
 
       <div v-else-if="activeTab === 'register'" class="register-card">
-        <h2>{{ t('dashboard.register.title') }}</h2>
+        <h2 class="panel-title">{{ t('dashboard.register.title') }}</h2>
         <form class="register-form" @submit.prevent="registerMachine">
           <div class="register-form__row">
             <label for="machine-name">{{ t('dashboard.register.name') }}</label>
@@ -279,7 +310,7 @@ const filteredCatalog = computed(() => {
       </div>
 
       <div v-else-if="activeTab === 'requests'" class="requests-card">
-        <h2>{{ t('dashboard.requests.title') }}</h2>
+        <h2 class="panel-title">{{ t('dashboard.requests.title') }}</h2>
         <div class="inventory-table-wrap">
           <table class="inventory-table">
             <thead>
@@ -303,7 +334,7 @@ const filteredCatalog = computed(() => {
       </div>
 
       <div v-else-if="activeTab === 'activeRentals'" class="active-rentals-card">
-        <h2>{{ t('dashboard.activeRentals.title') }}</h2>
+        <h2 class="panel-title">{{ t('dashboard.activeRentals.title') }}</h2>
         <p v-if="activeRentals.length === 0" class="active-rentals-empty">{{ t('dashboard.activeRentals.empty') }}</p>
         <div v-else class="inventory-table-wrap">
           <table class="inventory-table">
@@ -334,7 +365,7 @@ const filteredCatalog = computed(() => {
       </div>
 
       <div v-else-if="activeTab === 'maintenance'" class="maintenance-card">
-        <h2>{{ t('dashboard.maintenance.title') }}</h2>
+        <h2 class="panel-title">{{ t('dashboard.maintenance.title') }}</h2>
         <form class="register-form" @submit.prevent="registerMaintenance">
           <div class="register-form__row">
             <label for="maintenance-machine">{{ t('dashboard.maintenance.machine') }}</label>
@@ -391,7 +422,7 @@ const filteredCatalog = computed(() => {
       </div>
 
       <div v-else-if="activeTab === 'history'" class="history-card">
-        <h2>{{ t('dashboard.history.title') }}</h2>
+        <h2 class="panel-title">{{ t('dashboard.history.title') }}</h2>
         <div class="history-filter">
           <label for="history-machine-filter">{{ t('dashboard.history.filter') }}</label>
           <select id="history-machine-filter" v-model="historyFilter">
@@ -425,7 +456,7 @@ const filteredCatalog = computed(() => {
       </div>
 
       <div v-else class="catalog-card">
-        <h2>{{ t('dashboard.catalog.title') }}</h2>
+        <h2 class="panel-title">{{ t('dashboard.catalog.title') }}</h2>
         <div class="catalog-filters">
           <input v-model="catalogSearch" type="search" :placeholder="t('dashboard.catalog.searchPlaceholder')" :aria-label="t('dashboard.catalog.search')">
           <select v-model="catalogCategory" :aria-label="t('dashboard.catalog.allCategories')">
@@ -452,9 +483,7 @@ const filteredCatalog = computed(() => {
           </button>
         </div>
       </div>
-
-      <button class="btn" type="button" @click="$emit('logout')">{{ t('dashboard.logout') }}</button>
-    </div>
+    </main>
     <MachineDetailDialog ref="machineDialog" />
   </div>
 </template>
